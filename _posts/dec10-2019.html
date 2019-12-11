@@ -1,0 +1,126 @@
+<h3>Boolean don't care conditions</h3>
+
+<p>Boolean don't care conditions may be divided into two sets. Patterns that may occur at the inputs of the network are 
+<em>controlled</em> by external environment in which the network is embedded. This constraint on the sorroundings of the network 
+gives rise to <em>controllability don't care set</em> (CDC). </p>
+
+<p>The below figure shows a Boolean network <em>E3</em> (4-input AND gate) embedded in an environment. <em>E1</em> is the upstream 
+logic which feeds the inputs of <em>E3</em>, while the output of <em>E3</em> feeds into the downstream logic network <em>E2</em>. 
+Note that <em>E1</em> is <em>only</em> capable of producing inputs shown in the figure (0110, 1000, 1001, 1100). 
+All other outputs cannot be produced by the upstream logic by design.</p>
+
+<p><img src="/images/cdc1-page-001.jpg" alt="Controllability don't cares" class="centerimage"></p>
+
+<p>Hence, <em>E1</em> <em>controls</em> which Boolean inputs may be applied to <em>E3</em>. </p>
+
+<p>Consider the Boolean network below in which the downstream logic now has a single AND gate with output <em>O1</em>. The inputs 
+are <em>r1</em> and <em>Y</em>. Hence, O1 = r1 AND Y. Note that <em>r1</em> (which feeds input <em>a</em> of the four input AND 
+gate in <em>E3</em>, i.e, a = r1) now <em>controls</em> propagation of the input Y through the AND gate in downstream logic. 
+</p>
+
+<p><img src="/images/cdc2.jpg" alt="Observability don't cares" class="centerimage"></p>
+
+<p>If <em>r1 = 1</em>, then O1 = <font color="red"> r1 AND Y </font> = <font color="blue"> 1 AND Y </font> = Y. However, 
+if <em>r1 = 0</em>, then <em>irrespective</em> of the logic value of Y, O1 is 0. What is the implication of this observation ?</p>
+
+<p><em>a = r1</em> is also the input to the 4-input AND gate whose output is Y. Can the observation above be used to optimize 
+<em>E3</em> ? Since <em>r1 = 0</em>, <em>a = 0</em>. Now, when a = 0, the logic value of Y does not matter, since the AND gate 
+in the downstream logic prevents the propagation of Y to the output O1. Hence, Y <em>does not matter</em> means in Boolean logic 
+jargon that Y is <em>don't care</em> when <em>a = 0</em>. 
+
+Y is don't care for all the input patterns - abcd = 0XXX (0000, 00001, ..., 0111 patterns at input to <em>E3</em>). It is important 
+to note that these don't cares arise due to <em>observability</em> of Y (for network <em>E3</em>) at output O1 AND the don't care 
+patterns are at the input of network <em>E3</em>. This allows for optimization of network <em>E3</em> using not only the CDC patterns 
+but also the observability don't care (<em>ODC</em>) patterns.  </p>
+
+<p>CDC patterns = {0110, 1000, 1001, 1100}</p>
+<p>ODC patterns = {0000, 00001, ..., 0111}</p>
+
+<p>DC patterns for the Boolean network <em>E3</em> are induced due to upstream logic network <em>E1</em> (CDC) and downstream 
+logic network <em>E2</em> (ODC). </p>
+
+<p>DC patterns = CDC patterns U ODC patterns = {0000, 0001, ...., 0111, 1000, 1001, 1100}</p>
+
+<p>The K-map for network <em>E3</em> ignoring the up and down-stream logic is as shown below. </p>
+
+<table border="1">
+  <tr>
+    <td>&nbsp;</td>
+    <td>c'd'</td>
+    <td>c'd</td>
+    <td>cd</td>
+    <td>cd'</td>
+  </tr>
+  <tr>
+    <td>a'b'</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+  </tr>
+  <tr>
+    <td>a'b</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+  </tr>
+  <tr>
+    <td>ab</td>
+    <td>0</td>
+    <td>0</td>
+    <td>1</td>
+    <td>0</td>
+  </tr>
+  <tr>
+    <td>ab'</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+  </tr>
+</table>
+
+<p>Considering the don't cares induced by network <em>E1</em> and <em>E2</em>, the K-map is updated as shown below.</p>
+
+<table border="1">
+  <tr>
+    <td>&nbsp;</td>
+    <td>c'd'</td>
+    <td>c'd</td>
+    <td>cd</td>
+    <td>cd'</td>
+  </tr>
+  <tr>
+    <td>a'b'</td>
+    <td>D</td>
+    <td>D</td>
+    <td>D</td>
+    <td>D</td>
+  </tr>
+  <tr>
+    <td>a'b</td>
+    <td>D</td>
+    <td>D</td>
+    <td>D</td>
+    <td>D</td>
+  </tr>
+  <tr>
+    <td>ab</td>
+    <td>D</td>
+    <td>0</td>
+    <td>1</td>
+    <td>0</td>
+  </tr>
+  <tr>
+    <td>ab'</td>
+    <td>D</td>
+    <td>D</td>
+    <td>0</td>
+    <td>0</td>
+  </tr>
+</table>
+
+<p>Optimizing the network <em>E3</em> using the don't cares yields, Y = bcd. Thus the input <em>a</em> to the 4-input AND gate is 
+eliminated as redundant !!</p>
+<p>In the next post, we will try to formalize the above ideas.</p>
