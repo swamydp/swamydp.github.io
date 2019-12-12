@@ -36,11 +36,15 @@ li a:hover {
 }
 
 .mainpage{
-  list-style-type: square;
+  
    background-color: lightblue;
   margin-top: 0;
   margin-bottom: 0;
   margin-left: 100px;
   margin-right: 0;
   padding-left: 0px;
+}
+
+.mainpage_li{
+  list-style-type: square;
 }
