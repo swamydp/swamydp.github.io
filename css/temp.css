@@ -35,7 +35,7 @@ li a:hover {
   width: 25%;
 }
 
-.mainpage{
+ul.mainpage{
   list-style-type: square;
    background-color: lightblue;
   margin-top: 0;
