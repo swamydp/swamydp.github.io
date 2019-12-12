@@ -36,7 +36,7 @@ li a:hover {
 }
 
 .mainpage{
-  
+  list-style-type: square;
    background-color: lightblue;
   margin-top: 0;
   margin-bottom: 0;
@@ -46,6 +46,6 @@ li a:hover {
 }
 
 .mainpage_li{
-  list-style-type: square;
+  
   color : black;
 }
