@@ -34,3 +34,13 @@ li a:hover {
   margin-right: auto;
   width: 25%;
 }
+
+.mainpage{
+  list-style-type: square;
+   background-color: lightblue;
+  margin-top: 0;
+  margin-bottom: 0;
+  margin-left: 100px;
+  margin-right: 0;
+  padding-left: 0px;
+}
